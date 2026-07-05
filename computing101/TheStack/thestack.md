@@ -41,3 +41,12 @@ In this challenge, read the argument count from [rsp] and use it as the exit cod
 # Notes
 
 - Important to remember: RSP (Stack Pointer) points to the top of the stack. When the program starts, the value at [RSP] is the number of command-line arguments passed to the program, including the program name itself.
+- So to read the number of arguments passed to the program we can just dereference the rsp register and use that value to do a number of things, but in this case, we need to pass it to rdi in order to use it as the exit code.
+
+```asm
+.global _start
+_start:
+  mov rdi, [rsp]
+  mov rax, 60 ; exit code for syscall
+  syscall
+```

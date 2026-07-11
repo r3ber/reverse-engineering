@@ -50,3 +50,6 @@ _start:
   mov rax, 60 ; exit code for syscall
   syscall
 ```
+
+- We can use offsets to access the stack, for example, if we want to access the address that contains the first argument (not the program name), we can use [rsp + 16]. For the second argument (hello) we can use [rsp + 24], and so on.
+- If we want to actually access the value of the first argument, for example, we need to dereference the pointer at [rsp + 16], this gives us the address of the first argument, and then dereference that pointer to get to the actual value.
